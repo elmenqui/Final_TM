@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,11 +14,11 @@ import java.util.Date;
  * @version 2019.10.15
  */
 
-public class Task {
+public class Task implements Serializable {
 
     private String title;
     private String category;
-    private String dueDate; // format: yyyy-mm-dd
+    private Date dueDate; // format: dd-mm-yyyy
     private String status;
 
     /**
@@ -27,7 +28,7 @@ public class Task {
      * @param status   Sets the task as ongoing (true) or done (false)
      */
 
-    public Task(String title, String category, String dueDate, String status) {
+    public Task(String title, String category, Date dueDate, String status) {
 
         this.title = title;
         this.category = category;
@@ -39,19 +40,28 @@ public class Task {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getCategory() {
         return category;
     }
 
-    public Date getDate() throws ParseException {
-        Date date;
-        date = new SimpleDateFormat("dd/MM/yyyy").parse(dueDate);
-        return date;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public boolean isStatus() {
-        boolean parseBoolean = Boolean.parseBoolean(status);
-        return parseBoolean;
+    public Date getDueDate() {
+        return dueDate;
     }
 
+    public Date setDueDate(String dueDate) throws ParseException {
+        SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+        return date.parse(dueDate);
+    }
+
+    public String details() {
+        return title + " § " + dueDate.toString() + " § " + category + " § " + status;
+    }
 }
