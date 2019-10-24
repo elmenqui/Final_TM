@@ -19,4 +19,16 @@ public class Menu {
         int selection = userInput.nextInt();
     }
 
+    // Submenu of (1) Show Task List
+    public void ShowTaskByMenu() {
+        System.out.println("  (1) Show Tasks by Projects\n");
+        System.out.println("  (2) Show Tasks by Due Date\n");
+        System.out.println("  (3) Back to Main Menu\n");
+        System.out.println("\n");
+        System.out.println(">>>");
+
+        int selection2 = userInput.nextInt();
+    }
+
+
 }
